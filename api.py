@@ -10,26 +10,27 @@ def liste_parties(liste_idul):
     else:
         raise RuntimeError(rep.json()['message'])
 
-"""fonction recup"""
+
 def récupérer_une_partie(id_partie):
+    """fonction recup"""
     liste = [id_partie,]
     rep = httpx.get(URL+'partie', params={'id':liste})
     if rep.status_code == 200:
         tup = (rep.json()['id'], rep.json()['prochain_joueur'], rep.json()['état'])
         return tup
-    else:
-        raise RuntimeError(rep.json()['message'])
-"""cree"""
+    raise RuntimeError(rep.json()['message'])
+
 def créer_une_partie(liste_iduls):
+    """cree"""
     rep = httpx.post(URL+'partie', json={'iduls': liste_iduls})
     if rep.status_code == 200:
         rep = rep.json()
         tup = (rep.get('id'), rep.get('prochain_joueur'), rep.get('état'))
         return tup
-    else:
-        raise RuntimeError(rep.json()['message'])
-"""jou"""
+    raise RuntimeError(rep.json()['message'])
+
 def jouer_un_coup(id_partie, idul, pion):
+    """jou"""
     rep = httpx.put(URL+'jouer', json= {'id':id_partie, 'idul':idul, 'pion':pion})
     if rep.status_code == 200:
         rep = rep.json()
