@@ -1,5 +1,5 @@
 import argparse
-
+'''argparse'''
 def traiter_la_ligne_de_commande():
     '''traiter'''
     parser = argparse.ArgumentParser(add_help=True, description='Squadro')
@@ -241,7 +241,7 @@ def afficher_le_plateau_de_jeu(etat_de_jeu):
         elif pion_jh[4] == i + 1:
             plateau[15] = '─' + plateau[15]
             plateau[15] += '□□ ○──'
-            if pion_jv[i] == 6 :   
+            if pion_jv[i] == 6 :
                 plateau[16] += ' ●    '
             else:
                 plateau[16] += ' |    '
@@ -255,7 +255,7 @@ def afficher_le_plateau_de_jeu(etat_de_jeu):
                 plateau[16] += ' |    '
         else:
             plateau[15] += '─┼────'
-            if pion_jv[i] == 6 :   
+            if pion_jv[i] == 6 :
                 plateau[16] += ' ●    '
             else:
                 plateau[16] += ' |    '
@@ -307,4 +307,3 @@ def formatter_les_parties(liste_parties):
             else:
                 representation.append(f'{1+e}: {dictio.get("date")}, {joueur[0]} vs {joueur[1]}\n')
     return ''.join(representation)
-
