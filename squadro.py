@@ -2,11 +2,11 @@ import argparse
 
 def traiter_la_ligne_de_commande():
     parser = argparse.ArgumentParser(add_help=True, description='Squadro')
-    parser.add_argument('IDUL',nargs ='+', type = list,metavar='IDUL',help = 'IDUL du ou des joueur(s)')
+    parser.add_argument('IDUL',nargs ='+', type = str,metavar='IDUL',help = 'IDUL du ou des joueur(s)')
     
     parser.add_argument('-p','--parties',metavar='',type = list,help = 'Lister les 20 dernières parties')
     return parser.parse_args()
-traiter_la_ligne_de_commande()
+
 
 
 def afficher_le_plateau_de_jeu(etat_de_jeu):
@@ -364,7 +364,7 @@ def afficher_le_plateau_de_jeu(etat_de_jeu):
 
 
 
-print(afficher_le_plateau_de_jeu())
+
 
 def formatter_les_parties(liste_parties):
     representation =[]
@@ -383,5 +383,5 @@ def formatter_les_parties(liste_parties):
 
     
     return (''.join(representation)) 
-print(formatter_les_parties())
+
 
