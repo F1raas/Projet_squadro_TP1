@@ -1,5 +1,6 @@
-import argparse
 '''argparse'''
+import argparse
+
 def traiter_la_ligne_de_commande():
     '''traiter'''
     parser = argparse.ArgumentParser(add_help=True, description='Squadro')
