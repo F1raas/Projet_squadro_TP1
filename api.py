@@ -7,8 +7,9 @@ def liste_parties(liste_idul):
     if rep.status_code == 200:
         rep = rep.json()
         return rep.get("parties")
-    if rep.status_code == 406:
+    else:
         raise RuntimeError(rep.json()['message'])
+
 """fonction recup"""
 def récupérer_une_partie(id_partie):
     liste = [id_partie,]
@@ -16,7 +17,7 @@ def récupérer_une_partie(id_partie):
     if rep.status_code == 200:
         tup = (rep.json()['id'], rep.json()['prochain_joueur'], rep.json()['état'])
         return tup
-    if rep.status_code ==406:
+    else:
         raise RuntimeError(rep.json()['message'])
 """cree"""
 def créer_une_partie(liste_iduls):
@@ -25,7 +26,7 @@ def créer_une_partie(liste_iduls):
         rep = rep.json()
         tup = (rep.get('id'), rep.get('prochain_joueur'), rep.get('état'))
         return tup
-    if rep.status_code == 406:
+    else:
         raise RuntimeError(rep.json()['message'])
 """jou"""
 def jouer_un_coup(id_partie, idul, pion):
@@ -37,5 +38,5 @@ def jouer_un_coup(id_partie, idul, pion):
         else:
             tup = (rep['id'], rep['prochain_joueur'], rep['état'])
             return tup
-    if rep.status_code == 406:
+    else:
         raise RuntimeError(rep.json()['message'])
