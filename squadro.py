@@ -1,12 +1,16 @@
 import argparse
 
 def traiter_la_ligne_de_commande():
+    '''traiter'''
     parser = argparse.ArgumentParser(add_help=True, description='Squadro')
-    parser.add_argument('IDUL',nargs ='+', type = str, metavar='IDUL',help = 'IDUL du ou des joueur(s)')
-    parser.add_argument('-p','--parties',metavar='',type = list,help = 'Lister les 20 dernières parties')
+    parser.add_argument('IDUL',nargs ='+', type = str, metavar='IDUL',
+    help = 'IDUL du ou des joueur(s)')
+    parser.add_argument('-p','--parties',metavar='',
+    type = list,help = 'Lister les 20 dernières parties')
     return parser.parse_args()
 
 def afficher_le_plateau_de_jeu(etat_de_jeu):
+    '''affichage'''
     print('légende:')
     print('□',etat_de_jeu[0].get("nom"))
     print('■', etat_de_jeu[1].get("nom"))
@@ -290,16 +294,17 @@ def afficher_le_plateau_de_jeu(etat_de_jeu):
     return '\n'.join(plateau)
 
 def formatter_les_parties(liste_parties):
+    '''formatter'''
     representation =[]
     for e, dictio in enumerate(liste_parties):
-       joueur = dictio.get("joueurs")
-       if e == 0:
-          representation.append(f'{1+e} : {dictio.get("date")}, {joueur[0]} vs {joueur[1]}\n')
-       else:
-          if e ==19:
-             representation.append(f'{1+e}: {dictio.get("date")}, {joueur[0]} vs {joueur[1]}')
-             representation[19] += f', gagnant: {dictio.get("gagnant")}'
-          else:
-             representation.append(f'{1+e}: {dictio.get("date")}, {joueur[0]} vs {joueur[1]}\n')
-    return (''.join(representation))
-    
+        joueur = dictio.get("joueurs")
+        if e == 0:
+            representation.append(f'{1+e} : {dictio.get("date")}, {joueur[0]} vs {joueur[1]}\n')
+        else:
+            if e ==19:
+                representation.append(f'{1+e}: {dictio.get("date")}, {joueur[0]} vs {joueur[1]}')
+                representation[19] += f', gagnant: {dictio.get("gagnant")}'
+            else:
+                representation.append(f'{1+e}: {dictio.get("date")}, {joueur[0]} vs {joueur[1]}\n')
+    return ''.join(representation)
+
