@@ -8,8 +8,7 @@ def liste_parties(liste_idul):
     if rep.status_code == 200:
         rep = rep.json()
         return rep.get("parties")
-    else:
-        raise RuntimeError(rep.json()['message'])
+    raise RuntimeError(rep.json()['message'])
 
 
 def récupérer_une_partie(id_partie):
@@ -37,7 +36,6 @@ def jouer_un_coup(id_partie, idul, pion):
         rep = rep.json()
         if rep['gagnant'] is not None:
             raise StopIteration(rep['gagnant'])
-        else:
-            tup = (rep['id'], rep['prochain_joueur'], rep['état'])
-            return tup
+        tup = (rep['id'], rep['prochain_joueur'], rep['état'])
+        return tup
     raise RuntimeError(rep.json()['message'])
