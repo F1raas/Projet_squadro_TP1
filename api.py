@@ -5,8 +5,8 @@ URL = 'https://pax.ulaval.ca/squadro/api2/'
 def liste_parties(liste_idul):
     rep = httpx.get(URL+'parties', params={'iduls':liste_idul})
     if rep.status_code == 200:
-       rep = rep.json()
-       return rep.get("parties")
+        rep = rep.json()
+        return rep.get("parties")
     if rep.status_code == 406:
         raise RuntimeError(rep.json()['message'])
 """fonction recup"""
@@ -22,7 +22,7 @@ def récupérer_une_partie(id_partie):
 def créer_une_partie(liste_iduls):
     rep = httpx.post(URL+'partie', json={'iduls': liste_iduls})
     if rep.status_code == 200:
-        rep = rep.json() 
+        rep = rep.json()
         tup = (rep.get('id'), rep.get('prochain_joueur'), rep.get('état'))
         return tup
     if rep.status_code == 406:
@@ -33,9 +33,9 @@ def jouer_un_coup(id_partie, idul, pion):
     if rep.status_code == 200:
         rep = rep.json()
         if rep['gagnant'] is not None:
-           raise StopIteration(rep['gagnant'])
+            raise StopIteration(rep['gagnant'])
         else:
-             tup = (rep['id'], rep['prochain_joueur'], rep['état'])
-             return tup
+            tup = (rep['id'], rep['prochain_joueur'], rep['état'])
+            return tup
     if rep.status_code == 406:
         raise RuntimeError(rep.json()['message'])
