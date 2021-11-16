@@ -1,8 +1,9 @@
 """api.py"""
 import httpx
 URL = 'https://pax.ulaval.ca/squadro/api2/'
-"""Fonction liste partie"""
+
 def liste_parties(liste_idul):
+    """Fonction liste partie"""
     rep = httpx.get(URL+'parties', params={'iduls':liste_idul})
     if rep.status_code == 200:
         rep = rep.json()
@@ -39,5 +40,4 @@ def jouer_un_coup(id_partie, idul, pion):
         else:
             tup = (rep['id'], rep['prochain_joueur'], rep['état'])
             return tup
-    else:
-        raise RuntimeError(rep.json()['message'])
+    raise RuntimeError(rep.json()['message'])
