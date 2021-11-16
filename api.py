@@ -1,5 +1,4 @@
 import httpx
-import json
 URL = 'https://pax.ulaval.ca/squadro/api2/'
 def liste_parties(liste_idul):
     rep = httpx.get(URL+'parties', params={'iduls':liste_idul})
